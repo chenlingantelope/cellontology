@@ -32,14 +32,18 @@ all_ontology = np.unique(celltype_ontology_dict[1])
 # modfiy ontology
 ontology.modify_tree()
 ontology.prune_to_tree(set(all_ontology))
-ontology.graphviz_plot('ontology.pdf')
+ontology.graphviz_plot('results/ontology.pdf')
 
 # processing for scanvi
 ontology.modify_tree('data/modification_scanvi.csv')
-ontology.graphviz_plot('ontology_scanvi.pdf')
+ontology.graphviz_plot('results/ontology_scanvi.pdf')
 ontology.flatten_tree()
-ontology.graphviz_plot('ontology_scanvi_flat.pdf')
+ontology.graphviz_plot('results/ontology_scanvi_flat.pdf')
 
 ontology.save_ontology('data/scanvi_tree.pkl')
 # generate adjacency matrix from ontology
 adjm = ontology.adjacency_matrix()
+
+for x in ontology.nodes:
+    if ontology.nodes[x]['name']=='pancreatic ductal cell':
+        print(x)
