@@ -43,7 +43,6 @@ class CellOntolgy(MultiDiGraph):
         return None
 
     def trace2root(self, node_id):
-        self.all_nodes = set()
         self.all_nodes.add(node_id)
         parents = list(self.successors(node_id))
         parent_choice = pd.read_csv(self.parent_choice_file, delimiter='|')
